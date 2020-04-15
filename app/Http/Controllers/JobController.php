@@ -72,8 +72,8 @@ class JobController extends Controller
                 'desc.required' => 'Description is required field',
                 'desc2.required' => 'Description two is required field',
                 'image.required' => 'Image is required',
-                'image.image' => 'U moet alleen een afbeelding selecteren',
-                'image.mimes' => 'Afbeelding moet de indeling jpeg, png, jpg, gif, svg hebben'
+                'image.image' => 'This must be image',
+                'image.mimes' => 'Image must be in jpeg, png, jpg, gif, svg format'
         
             ]);
         
