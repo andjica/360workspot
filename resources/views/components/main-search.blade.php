@@ -33,7 +33,7 @@
 														@endforeach
 													</select>
 												</div>
-												@if ($errors->has('categorysearch')) <p style="color:red;">{{ $errors->first('categorysearch') }}</p> @endif 
+												<p class="text-danger" id="er-category"></p>
 									        </div>
 								        </div>
 				              		</div>
@@ -49,7 +49,7 @@
 														@endforeach
 													</select>
 												</div>
-												@if ($errors->has('citysearch')) <p style="color:red;">{{ $errors->first('citysearch') }}</p> @endif 
+												<p class="text-danger" id="er-city"></p>
 									        </div>
 								        </div>
 				              		</div>
