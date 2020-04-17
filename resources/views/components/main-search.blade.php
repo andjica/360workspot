@@ -15,7 +15,7 @@
 						<div class="tab-content p-4" id="v-pills-tabContent">
 
 				        <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-nextgen-tab">
-				        <form action="{{route('jobs')}}" method="GET" class="search-job">
+				        <form action="{{route('jobs')}}" method="GET" class="search-job" id="form-search">
 				        	<div class="row no-gutters">
 				              			<!--<div class="col-md mr-md-2 text-right">
 										  <i class="fas fa-briefcase fa-3x text-primary"></i>	
@@ -26,7 +26,7 @@
 				              					<div class="form-field">
 					              				<div class="select-wrap">
 							                      <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-												  <select class="js-example-basic-single form-control search-slt border-warning bg-light sm-select2" name="categorysearch">
+												  <select class="js-example-basic-single form-control search-slt border-warning bg-light sm-select2" name="categorysearch" id="categorys">
 													<option value="">Category</option>
 														@foreach($categories as $category)
 															<option value="{{$category->id}}">{{$category->name}}</option>
@@ -42,7 +42,7 @@
 				              					<div class="form-field">
 					              				<div class="select-wrap">
 							                      <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-												  <select class="js-example-basic-single2 form-control search-slt border-warning bg-light sm-select2" name="citysearch">
+												  <select class="js-example-basic-single2 form-control search-slt border-warning bg-light sm-select2" name="citysearch" id="citys">
 													<option value="">City</option>
 														@foreach($cities as $city)
 															<option value="{{$city->id}}">{{$city->name}}</option>
@@ -56,7 +56,7 @@
 				              			<div class="col-md">
 				              				<div class="form-group">
 				              					<div class="form-field">
-								                	<button type="submit" class="form-control btn btn-primary">Search</button>
+								                	<input type="submit" class="form-control btn btn-primary" value="Search">
 									              </div>
 								              </div>
 				              			</div>

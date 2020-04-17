@@ -103,12 +103,8 @@
   <script src="{{asset('/')}}js/all-jobs-ajax.js"></script>
   <script src="{{asset('/')}}js/filter-ajax.js"></script>
   <script src="{{asset('/')}}js/contact-form.js"></script>
-  <script src="{{asset('/')}}js/apply-job.js">
-  
-
-
-</script>
-
+  <script src="{{asset('/')}}js/apply-job.js"></script>
+  <script src="{{asset('/')}}js/main-search.js"></script>
 
   </body>
 </html>
