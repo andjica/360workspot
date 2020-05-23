@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-primary px-md-4 no-dp" style="width: 100%;">
-		<div class="collapse navbar-collapse d-flex justify-content-center" id="navbarNavAltMarkup">
+		<div class="collapse navbar-collapse d-flex justify-content-center mr-right" id="navbarNavAltMarkup">
 			<div class="navbar-nav ">
 			<a class="nav-item nav-link active mt-2 text-white no-dp" href="#"><i class="fas fa-paper-plane"></i> info@360workspot.com</a>
 			<a class="nav-item nav-link mt-2 text-white no-dp" href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
