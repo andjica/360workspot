@@ -33,8 +33,10 @@ Route::group(['middleware' => ['checkcompany']], function ()
     Route::get('/edit-job/{id}', 'JobController@edit')->name('edit-job');
     Route::post('/update-job/{id}', 'JobController@update')->name('update-job');
 });
-//user - posts
 
+
+//user - posts
+//sutra radno :D
 
 Route::group(['middleware' => ['checkaccount']], function () 
 {
