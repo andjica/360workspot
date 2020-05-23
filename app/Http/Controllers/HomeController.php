@@ -84,6 +84,10 @@ class HomeController extends Controller
             }
            
         }
+        elseif($user->role_id == 3)
+        {
+            return "andjica";
+        }
         else
         {
             $jobs = Job::limit(5)->get();

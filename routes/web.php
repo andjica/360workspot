@@ -23,12 +23,17 @@ Route::get('/jobs-all', 'FrontController@jobsall')->name('jobs-all');
 
 Auth::routes();
 
-//user - job
+//company - jobs
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/tables', 'HomeController@tables')->name('tables');
-Route::post('/create-job', 'JobController@create')->name('create-job');
-Route::get('/edit-job/{id}', 'JobController@edit')->name('edit-job');
-Route::post('/update-job/{id}', 'JobController@update')->name('update-job');
+
+Route::group(['middleware' => ['checkcompany']], function () 
+{
+    Route::get('/tables', 'HomeController@tables')->name('tables');
+    Route::post('/create-job', 'JobController@create')->name('create-job');
+    Route::get('/edit-job/{id}', 'JobController@edit')->name('edit-job');
+    Route::post('/update-job/{id}', 'JobController@update')->name('update-job');
+});
+//user - posts
 
 
 Route::group(['middleware' => ['checkaccount']], function () 

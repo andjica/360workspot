@@ -49,10 +49,12 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'role' => ['required']
             
         ]);
     }
@@ -70,10 +72,10 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'role_id' => 2
+            'role_id' => $data['role']
         ]);
 
-        if ($user)
+        if($user->role_id == 2)
         {
             Account::create([
                 'user_id' => $user->id,
@@ -81,7 +83,16 @@ class RegisterController extends Controller
                 'valid_until' => null
             ]);
         }
+        else
+        {
+            Account::create([
+                'user_id' => $user->id,
+                'account_type_id' => 5,
+                'valid_until' => null
+            ]);
+        }
 
         return $user;
+
     }
 }
