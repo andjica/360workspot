@@ -78,6 +78,22 @@
   <i class="fas fa-question-circle"></i>
     <span>Contact support</span></a>
 </li>
+@elseif(auth()->user()->role_id == 3)
+<li class="nav-item">
+  <a class="nav-link" href="">
+  <i class="fas fa-briefcase"></i>
+    <span>Your profile</span></a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="">
+  <i class="fas fa-key"></i>
+    <span>Change password</span></a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="">
+  <i class="fas fa-images"></i>
+    <span>Add images</span></a>
+</li>
 @else
 <li class="nav-item">
   <a class="nav-link" href="{{route('jobs-admin')}}">

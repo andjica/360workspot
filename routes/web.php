@@ -36,7 +36,8 @@ Route::group(['middleware' => ['checkcompany']], function ()
 
 
 //user - posts
-//sutra radno :D
+Route::get('/user-panel', 'PostController@index');
+
 
 Route::group(['middleware' => ['checkaccount']], function () 
 {
