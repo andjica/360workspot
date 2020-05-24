@@ -10,6 +10,9 @@ use App\Purchase;
 use App\Blog;
 use App\Account;
 use App\Role;
+use App\Post;
+use App\Skill;
+use App\Image;
 
 class User extends Authenticatable
 {
@@ -67,5 +70,19 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
+    public function post()
+    {
+        return $this->hasOne(Post::class, 'user_id');
+    }
+
+    public function skill()
+    {
+        return $this->hasOne(Skill::class, 'user_id');
+    }
+
+    public function images()
+    {
+        return $this->hasMany(Image::class, 'user_id');
+    }
     
 }
