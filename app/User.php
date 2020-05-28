@@ -14,6 +14,7 @@ use App\Post;
 use App\Skill;
 use App\Image;
 
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -84,5 +85,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Image::class, 'user_id');
     }
+
+    
     
 }

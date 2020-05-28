@@ -37,7 +37,9 @@ Route::group(['middleware' => ['checkcompany']], function ()
 
 //user - posts
 Route::get('/user-panel', 'PostController@index');
-
+Route::post('/add-post', 'PostController@store')->name('add-post');
+Route::get('/create-image', 'ImageController@create')->name('create-image');
+Route::post('/add-image', 'ImageController@store')->name('add-image');
 
 Route::group(['middleware' => ['checkaccount']], function () 
 {

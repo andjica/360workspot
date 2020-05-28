@@ -29,7 +29,17 @@ class PostController extends Controller
 
     public function index()
     {
-        return view('pages.user-panel');
+        $userId = auth()->user()->id;
+        $post = Post::where('user_id', $userId)->first();
+        $agenumber =  \Carbon\Carbon::parse($post->age)->diff(\Carbon\Carbon::now())->format('%y years');
+
+        if($post)
+        {
+            return view('pages.user-panel', compact('post', 'agenumber'), $this->data);
+        }
+        return view('pages.user-panel', compact('post', 'agenumber'), $this->data);
+    
+        
     }
 
     /**
@@ -48,9 +58,53 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        request()->validate([
+            'city' => 'required',
+            'category' => 'required',
+            'birthday' => 'required',
+            'status' => 'required'
+        ],
+        [
+            'city.required' => 'Please choose city',
+            'category.required' => 'Please choose category',
+            'birthday.required' => 'Enter your birthday',
+            'status.required' => 'Please choose status'
+        ]);
+
+        $userId = auth()->user()->id;
+
+        if(request()->image){
+
+            $current = time();
+            $image = request()->file('image');
+            $name = $current.str_slug(request()->birthday).'.'.$image->getClientOriginalExtension();
+        
+            $destinationPath = public_path('/img-users');
+
+            $image->move($destinationPath, $name);
+
+            $post = new Post();
+            $post->user_id = $userId;
+            $post->category_id = request()->category;
+            $post->city_id = request()->city;
+            $post->age = request()->birthday;
+            $post->short_biography = request()->about;
+            $post->more_about = request()->moreabout;
+            $post->status = request()->status;
+            $post->image = $name;
+
+            try{
+                $post->save();
+                return redirect()->back()->with('success', 'You set up information about yourself successfully');
+            }
+            catch(\Throwable $e)
+            {
+                return abort(500);
+            }
+
+        }
     }
 
     /**

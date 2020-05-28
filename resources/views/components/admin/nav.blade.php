@@ -90,7 +90,7 @@
     <span>Change password</span></a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="">
+  <a class="nav-link" href="{{route('create-image')}}">
   <i class="fas fa-images"></i>
     <span>Add images</span></a>
 </li>
