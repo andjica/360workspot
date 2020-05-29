@@ -16,14 +16,11 @@
    
     <div class="row mt-3">
         <div class="col-lg-8 p-4 shadow">
-        @isset($postcount)
-            @if($postcount == null)
-                @include('components.user.create-post')
-               
+            @if($countskill > null)
+                @include('components.user.update-skill')
             @else
-                @include('components.user.info')
+            @include('components.user.create-skill')
             @endif
-        @endisset
         </div>
         <div class="col-lg-4">
         @include('components.user.sidebar')

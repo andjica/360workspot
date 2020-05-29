@@ -35,11 +35,14 @@ Route::group(['middleware' => ['checkcompany']], function ()
 });
 
 
-//user - posts
+//user - posts //TREBA SE URADI MIDDLEWARE ZA ONE SA ROLE 3(NE ZABORAVI ANDJELA)
 Route::get('/user-panel', 'PostController@index');
 Route::post('/add-post', 'PostController@store')->name('add-post');
 Route::get('/create-image', 'ImageController@create')->name('create-image');
 Route::post('/add-image', 'ImageController@store')->name('add-image');
+Route::get('/create-skills', 'SkillController@create')->name('create-skills');
+Route::post('/add-skill', 'SkillController@store')->name('add-skill');
+Route::post('/update-skill', 'SkillController@update')->name('update-skill');
 
 Route::group(['middleware' => ['checkaccount']], function () 
 {
