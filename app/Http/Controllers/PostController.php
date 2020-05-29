@@ -29,15 +29,17 @@ class PostController extends Controller
 
     public function index()
     {
-        $userId = auth()->user()->id;
-        $post = Post::where('user_id', $userId)->first();
-        $agenumber =  \Carbon\Carbon::parse($post->age)->diff(\Carbon\Carbon::now())->format('%y years');
+        $auth = auth()->user()->id;
 
-        if($post)
-        {
-            return view('pages.user-panel', compact('post', 'agenumber'), $this->data);
+        $postcount = Post::where('user_id', $auth)->count();
+        $post = Post::where('user_id', $auth)->first();
+        
+
+        if($postcount > 0)
+        {    $agenumber =  \Carbon\Carbon::parse($post->age)->diff(\Carbon\Carbon::now())->format('%y years');
+            return view('pages.user-panel', compact('post', 'agenumber', 'postcount'), $this->data);
         }
-        return view('pages.user-panel', compact('post', 'agenumber'), $this->data);
+        return view('pages.user-panel', compact('post', 'agenumber', 'postcount'), $this->data);
     
         
     }
@@ -95,14 +97,13 @@ class PostController extends Controller
             $post->status = request()->status;
             $post->image = $name;
 
-            try{
+            
                 $post->save();
                 return redirect()->back()->with('success', 'You set up information about yourself successfully');
-            }
-            catch(\Throwable $e)
-            {
-                return abort(500);
-            }
+            
+            
+               
+            
 
         }
     }

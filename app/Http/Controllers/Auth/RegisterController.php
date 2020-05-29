@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Account;
+use App\Post;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -75,6 +76,7 @@ class RegisterController extends Controller
             'role_id' => $data['role']
         ]);
 
+        //company
         if($user->role_id == 2)
         {
             Account::create([
@@ -83,6 +85,7 @@ class RegisterController extends Controller
                 'valid_until' => null
             ]);
         }
+        //user
         else
         {
             Account::create([
@@ -90,6 +93,8 @@ class RegisterController extends Controller
                 'account_type_id' => 5,
                 'valid_until' => null
             ]);
+
+            
         }
 
         return $user;
