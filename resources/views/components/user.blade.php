@@ -40,6 +40,7 @@
                 
                 </ul>
     </div>
+  
 </div>
 <hr>
 <div class="row mt-2 bg-white">
@@ -52,9 +53,7 @@
         <p>{{$post->more_about}}</p>
     </div>
 </div>
-<div class="row">
-       
-</div>
+
 <Style>
 .image-background5
 {

@@ -39,14 +39,26 @@
 			</div>
 			  <li class="nav-item"><a href="{{route('users-all')}}" class="nav-link text-dark">Users</a></li>
 			  <li class="nav-item"><a href="{{route('blogs-all')}}" class="nav-link text-dark">Blogs</a></li>
-	          <li class="nav-item"><a href="{{route('register')}}" class="nav-link text-dark">Register</a></li>
+			  @if(auth()->user())
+			  <li class="nav-item"><a href="{{route('logout')}}" class="nav-link text-dark">Logout</a></li>
+			  @else
+			  <li class="nav-item"><a href="{{route('register')}}" class="nav-link text-dark">Register</a></li>
 			  <li class="nav-item"><a href="{{route('login')}}" class="nav-link text-dark">Login</a></li>
 			  <li class="nav-item"><a href="{{route('contact')}}" class="nav-link text-dark">Contact</a></li>
-			 
-			  @auth
-	          <li class="nav-item cta mr-md-1"><a href="{{asset('/home')}}" class="nav-link">Post a Job</a></li>
+			  @endif
+	         
+			  @if(auth()->user())
+			  	@if(auth()->user()->role_id == 2)
+				  <li class="nav-item cta mr-md-1"><a href="{{asset('/home')}}" class="nav-link">Post a Job</a></li>
+				@elseif(auth()->user()->role_id == 3)
+					<li class="nav-item cta mr-md-1"><a href="{{asset('/home')}}" class="nav-link">User Panel</a></li>
+				@else
+
+				@endif
+			  @else
 	          
-			  @endauth
+	          @endif
+			 
 	        </ul>
 	      </div>
 	    </div>

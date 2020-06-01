@@ -48,16 +48,109 @@ class PostController extends Controller
         
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function video()
     {
-        //
+        $auth = auth()->user()->id;
+
+        $postcount = Post::where('user_id', $auth)->count();
+        $post = Post::where('user_id', $auth)->first();
+        
+        $skillcount = Skill::where('user_id', $auth)->count();
+        $skill = Skill::where('user_id', $auth)->get();
+
+        if($postcount > 0)
+        {    $agenumber =  \Carbon\Carbon::parse($post->age)->diff(\Carbon\Carbon::now())->format('%y years');
+            return view('pages.user-video', compact('post', 'agenumber', 'postcount', 'skillcount', 'skill'), $this->data);
+        }
+        return view('pages.user-video', compact('post', 'agenumber', 'postcount', 'skillcount', 'skill'), $this->data);
+
     }
 
+    public function updatevideo()
+    {
+        request()->validate([
+            'video'  => 'required| mimes:mp4,mov,ogg | max:20000'
+        ],
+        [
+            'video.required' => 'Video is required',
+            'video.mimes' => 'Video must be in mp4,mov,ogg',
+            'video.max' => 'Max video size is 2MB' 
+        ]);
+        $id = auth()->user()->id;
+
+        if(request()->video)
+        {
+            $current = time();
+            $video = request()->file('video');
+            $name = $current.str_slug(request()->hiddenname).'.'.$video->getClientOriginalExtension();
+        
+            $destinationPath = public_path('/video-fromusers');
+
+            $video->move($destinationPath, $name);
+
+            $post = Post::where('user_id', $id)->first();
+            $post->video = $name;
+
+            try{
+                $post->save();
+                return redirect()->back()->with('success', 'You insert a new video successfully');
+            }
+            catch(\Throwable $e)
+            {
+                return abort(500);
+            }
+            
+
+        }
+    }
+    public function social()
+    {
+        $auth = auth()->user()->id;
+
+        $postcount = Post::where('user_id', $auth)->count();
+        $post = Post::where('user_id', $auth)->first();
+        
+        $skillcount = Skill::where('user_id', $auth)->count();
+        $skill = Skill::where('user_id', $auth)->get();
+
+        if($postcount > 0)
+        {    $agenumber =  \Carbon\Carbon::parse($post->age)->diff(\Carbon\Carbon::now())->format('%y years');
+            return view('pages.user-social', compact('post', 'agenumber', 'postcount', 'skillcount', 'skill'), $this->data);
+        }
+        return view('pages.user-social', compact('post', 'agenumber', 'postcount', 'skillcount', 'skill'), $this->data);
+     
+    }
+
+    public function updatesocial()
+    {
+        request()->validate([
+            'youtube' => 'nullable|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
+            'instagram' => 'nullable|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
+            'website' => 'nullable|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
+        ],
+        [
+            'youtube.regex' => 'https://www.youtube.com/some-path',
+            'instagram.regex' => 'https://www.instagram.com/some-path',
+            'website.regex' => 'http://dfambusiness.com/some-path'
+        ]);
+
+        $id = auth()->user()->id;
+
+        $post = Post::where('user_id', $id)->first();
+
+        $post->youtube = request()->youtube;
+        $post->instagram = request()->instagram;
+        $post->website = request()->website;
+
+        try{
+            $post->save();
+            return redirect()->back()->with('success', 'You update information about your social media successfully');
+        }
+        catch(\Throwable $e)
+        {
+            return abort(500);
+        }
+    }
     /**
      * Store a newly created resource in storage.
      *

@@ -43,6 +43,10 @@ Route::get('/user-panel', 'PostController@index');
 Route::post('/add-post', 'PostController@store')->name('add-post');
 Route::get('/edit/{id}', 'PostController@edit')->name('edit/{id}');
 Route::post('/update-post/{id}', 'PostController@update')->name('update-post');
+Route::get('/create-video', 'PostController@video')->name('create-video');
+Route::post('/update-video', 'PostController@updatevideo')->name('update-video');
+Route::get('/create-social', 'PostController@social')->name('create-social');
+Route::post('/update-social', 'PostController@updatesocial')->name('update-social');
 
 Route::get('/create-image', 'ImageController@create')->name('create-image');
 Route::post('/add-image', 'ImageController@store')->name('add-image');

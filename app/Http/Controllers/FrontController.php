@@ -11,6 +11,7 @@ use App\Blog;
 use App\User;
 use App\Post;
 use App\Skill;
+use App\Image;
 
 class FrontController extends Controller
 {
@@ -250,11 +251,16 @@ class FrontController extends Controller
     {
         $user = User::find($id) ?? abort(404);
         $userId = $user->id;
+
         $post = Post::where('user_id', $userId)->first();
         $agenumber =  \Carbon\Carbon::parse($post->age)->diff(\Carbon\Carbon::now())->format('%y years');
+       
         $skillcount = Skill::where('user_id', $userId)->count();
         $skill = Skill::where('user_id', $userId)->get();
 
-        return view('pages.user', compact('user', 'agenumber', 'post', 'skillcount', 'skill'), $this->data);
+        $imagescount = Image::where('user_id', $userId)->count();
+        $images = Image::Where('user_id', $userId)->get();
+       
+        return view('pages.user', compact('user', 'agenumber', 'post', 'skillcount', 'skill', 'imagescount', 'images'), $this->data);
     }
 }

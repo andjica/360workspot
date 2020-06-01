@@ -1,7 +1,7 @@
 @include('components.admin.header')
 
 <div id="wrapper">
-@include('components.admin.nav')
+@include('components.user.nav')
 <div class="container">
     <div class="row">
         <div class="col-lg-12 mt-4 text-dark p-2">
