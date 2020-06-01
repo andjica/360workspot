@@ -24,18 +24,7 @@
         @include('components.user.sidebar')
         </div>
     </div>
-    <div class="row mt-5">  
-        @if($countimages > 0)
-            @foreach($images as $img)
-            <div class="col-lg-2 ml-3 mt-2 shadow">
-                <a href="" data-toggle="tooltip" data-placement="top" title="Delete this image">
-                <i class="fa fa-minus-circle text-danger fa-2x float-right"></i>
-                    <img src="{{asset('/img-fromusers/'.$img->url)}}" class="img-fluid">
-                    </a>
-                </div>
-            @endforeach
-        @endif
-   </div>
+   
 </div>
 </div>
 @include('components.admin.footer')

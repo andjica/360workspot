@@ -18,6 +18,7 @@ class CreateJobsTable extends Migration
             $table->integer('user_id')->unsigned()->index();
             $table->integer('category_id')->unsigned()->index();
             $table->integer('city_id')->unsigned()->index();
+            $table->integer('salary_id')->unsigned()->index();
             $table->string('title');
             $table->text('title_two')->nullable();
             $table->text('title_three')->nullable();
@@ -50,6 +51,12 @@ class CreateJobsTable extends Migration
                 ->references('id')
                 ->on('cities')
                 ->onDelete('cascade');
+            
+            $table->foreign('salary_id')
+                ->references('id')
+                ->on('salaries')
+                ->onDelete('cascade');
+
 
           
                 

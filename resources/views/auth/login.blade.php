@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container bg-white" style="border-radius:20px;">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -67,6 +67,10 @@
                     </form>
                 </div>
             </div>
+        </div>
+
+        <div class="col-lg-4">
+            <img src="images/login1.jpg" style="width:100%;">
         </div>
     </div>
 </div>

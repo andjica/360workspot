@@ -23,9 +23,8 @@
                 <div class="row">
                 @foreach($jobs as $job)
                 <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                                <img class="card-img-top mx-auto" src="{{asset('/img-jobs/'.$job->url)}}" style="       height: 220px;
-    width: 220px;">
+                <div class="card mb-4 shadow-sm" style="    height: 320px;">
+                                <img class="card-img-top mx-auto" src="{{asset('/img-jobs/'.$job->url)}}" style="   height: auto;  width: 100%;">
                                 <div class="card-body">
                                 <p class="card-text"> {{$job->title}}</p>
                                 <div class=" align-items-center" style="    display: grid;">

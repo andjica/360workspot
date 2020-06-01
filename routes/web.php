@@ -18,9 +18,12 @@ Route::get('/job/{id}', 'FrontController@job')->name('job');
 Route::get('/jobscategory/{id}', 'FrontController@jobcategory');
 Route::get('/jobsajax', 'FrontController@jobsajax');
 Route::get('/search', 'FrontController@search')->name('search');
+Route::get('/search-user-filter', 'FrontController@filteruser')->name('search-user-filter');
 Route::get('/blogs-all', 'FrontController@blogs')->name('blogs-all');
 Route::get('/jobs-all', 'FrontController@jobsall')->name('jobs-all');
-
+Route::post('/search-user', 'FrontController@searchuser')->name('search-user');
+Route::get('/users-all', 'FrontController@alluser')->name('users-all');
+Route::get('/user/{id}', 'FrontController@user')->name('user');
 Auth::routes();
 
 //company - jobs
@@ -38,6 +41,9 @@ Route::group(['middleware' => ['checkcompany']], function ()
 //user - posts //TREBA SE URADI MIDDLEWARE ZA ONE SA ROLE 3(NE ZABORAVI ANDJELA)
 Route::get('/user-panel', 'PostController@index');
 Route::post('/add-post', 'PostController@store')->name('add-post');
+Route::get('/edit/{id}', 'PostController@edit')->name('edit/{id}');
+Route::post('/update-post/{id}', 'PostController@update')->name('update-post');
+
 Route::get('/create-image', 'ImageController@create')->name('create-image');
 Route::post('/add-image', 'ImageController@store')->name('add-image');
 Route::get('/create-skills', 'SkillController@create')->name('create-skills');
@@ -70,14 +76,14 @@ Route::group(['middleware' => ['checkaccount']], function ()
 
     //blog
     Route::get('/blogs', 'BlogController@index')->name('blogs');
-    Route::get('/blog/{id}', 'BlogController@show')->name('blog-one');
+   
     Route::get('/create-blog', 'BlogController@create')->name('create-blog');
     Route::post('/insert-blog', 'BlogController@store')->name('insert-blog');
     Route::get('/edit-blog/{id}', 'BlogController@edit')->name('edit-blog');
     Route::post('/update-blog/{id}','BlogController@update')->name('update-blog');
     Route::get('/delete-blog/{id}', 'BlogController@destroy')->name('delete-blog');
 });
-
+Route::get('/blog/{id}', 'BlogController@show')->name('blog-one');
 //paypal routes
 Route::post('/upgrade-pro', 'PaymentController@paypro')->name('upgrade-pro'); 
 Route::post('/upgrade-professional', 'PaymentController@payprofessional')->name('upgrade-professional');

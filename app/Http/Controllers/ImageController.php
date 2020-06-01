@@ -7,6 +7,7 @@ use App\Category;
 use App\City;
 use App\Image;
 use App\Post;
+use App\Skill;
 
 class ImageController extends Controller
 {
@@ -24,12 +25,17 @@ class ImageController extends Controller
     public function create()
     {
         $auth = auth()->user()->id;
+        
         $postcount = Post::where('user_id', $auth)->count();
         $post = Post::where('user_id', $auth)->first();
+        
         $countimages = Image::where('user_id', $auth)->count();
         $images = Image::where('user_id', $auth)->get();
 
-        return view('pages.create-image', compact('countimages', 'images', 'post','postcount'), $this->data);
+        $skillcount = Skill::where('user_id', $auth)->count();
+        $skill = Skill::where('user_id', $auth)->get();
+
+        return view('pages.create-image', compact('countimages', 'images', 'post','postcount', 'skillcount', 'skill'), $this->data);
     }
 
     public function store()

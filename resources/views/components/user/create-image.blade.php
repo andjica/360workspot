@@ -15,3 +15,15 @@
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 <hr>
+<div class="row">
+@if($countimages > 0)
+            @foreach($images as $img)
+            <div class="col-lg-3 ml-3 mt-2 shadow">
+                <a href="" data-toggle="tooltip" data-placement="top" title="Delete this image">
+                <i class="fa fa-minus-circle text-danger fa-2x float-right"></i>
+                    <img src="{{asset('/img-fromusers/'.$img->url)}}" class="img-fluid">
+                    </a>
+                </div>
+            @endforeach
+        @endif
+</div>

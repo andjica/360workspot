@@ -7,8 +7,8 @@
       	<div class="row d-md-flex no-gutters slider-text align-items-center justify-content-center">
 	        <div class="col-md-10 d-flex align-items-center ftco-animate">
 	        	<div class="text text-center pt-5 mt-md-5">
-	        		<p class="mb-4">Find a Job, Employment, and Career Opportunities</p>
-	            <h1 class="mb-5">360WORKSPOT will find for you a new Job</h1>
+	        		<p class="mb-4">The online culture of finding and posting in creative industries</p>
+	            <h1 class="mb-5">360WORKSPOT The right place for a new job!</h1>
 							<div class="ftco-counter ftco-no-pt ftco-no-pb">
 			        	<div class="row">
 				          <div class="col-md-4 d-flex justify-content-center counter-wrap ftco-animate">
@@ -63,6 +63,7 @@
 @include('components.categories-static')
 @include('components.top-categories')
 @include('components.title-icon')
+@include('components.search-users')
 	<div class="container">
 	<div class="row mt-5 mb-5">
 	<div class="col-lg-12 p-5">
@@ -72,11 +73,13 @@
 	</div>
 	</div>
 	@include('components.subscribe')
+	
 	<div class="container">
 	<div class="row mt-5 mb-5">
 	<div class="col-lg-12 p-5">
 		<h3 class="text-center">Our popular jobs</h3><br>
 	@include('components.slider-jobs')
+	
 	</div>
 	</div>
 	</div>

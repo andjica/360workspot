@@ -15,10 +15,10 @@ class SkillController extends Controller
         $postcount = Post::where('user_id', $auth)->count();
         $post = Post::where('user_id', $auth)->first();
 
-        $countskill = Skill::where('user_id', $auth)->count();
-        $skill = Skill::where('user_id', $auth)->first();
-
-        return view('pages.create-skill', compact('countskill','skill', 'postcount', 'post'));
+        $skillcount = Skill::where('user_id', $auth)->count();
+        $skill = Skill::where('user_id', $auth)->get();
+        
+        return view('pages.create-skill', compact('skillcount','skill', 'postcount', 'post'));
     }
 
     public function store()

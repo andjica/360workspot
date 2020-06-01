@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use App\City;
 use App\Category;
 use App\Post;
 use App\User;
+use App\Skill;
 
 class PostController extends Controller
 {
@@ -34,12 +36,14 @@ class PostController extends Controller
         $postcount = Post::where('user_id', $auth)->count();
         $post = Post::where('user_id', $auth)->first();
         
+        $skillcount = Skill::where('user_id', $auth)->count();
+        $skill = Skill::where('user_id', $auth)->get();
 
         if($postcount > 0)
         {    $agenumber =  \Carbon\Carbon::parse($post->age)->diff(\Carbon\Carbon::now())->format('%y years');
-            return view('pages.user-panel', compact('post', 'agenumber', 'postcount'), $this->data);
+            return view('pages.user-panel', compact('post', 'agenumber', 'postcount', 'skillcount', 'skill'), $this->data);
         }
-        return view('pages.user-panel', compact('post', 'agenumber', 'postcount'), $this->data);
+        return view('pages.user-panel', compact('post', 'agenumber', 'postcount', 'skillcount', 'skill'), $this->data);
     
         
     }
@@ -97,14 +101,15 @@ class PostController extends Controller
             $post->status = request()->status;
             $post->image = $name;
 
-            
+            try{
                 $post->save();
                 return redirect()->back()->with('success', 'You set up information about yourself successfully');
             
-            
-               
-            
-
+            }
+            catch(\Throwable $e)
+            {
+                return abort(500);
+            }
         }
     }
 
@@ -127,7 +132,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id) ?? abort(404);
+
+        return view('pages.update-user-about', compact('post'), $this->data);
     }
 
     /**
@@ -137,9 +144,61 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        //
+        
+        
+
+        $userId = auth()->user()->id;
+
+        $post = Post::find($id) ?? abort(404);
+            $post->user_id = $userId;
+            $post->category_id = request()->categories;
+            $post->city_id = request()->cities;
+            $post->age = request()->birthday;
+            $post->short_biography = request()->short;
+            $post->more_about = request()->more;
+            $post->status = request()->status;
+
+        if(request()->image){
+
+            $current = time();
+            $image = request()->file('image');
+            $name = $current.str_slug(request()->birthday).'.'.$image->getClientOriginalExtension();
+        
+            $destinationPath = public_path('/img-users');
+
+            $image->move($destinationPath, $name);
+
+            try{
+                //delete current image
+                $image_path = public_path('img-users/'.$post->image);
+                if(File::exists($image_path)) {
+                    File::delete($image_path);
+                }
+                //save new one 
+                $post->image = $name;
+                $post->save();
+                return redirect()->back()->with('success', 'You update informations successfully');
+            }
+            catch(\Throwable $e)  
+            {
+                return abort(500);
+            }
+            
+               
+        }
+        else
+        {
+            try{
+            $post->save();
+            return redirect()->back()->with('success', 'You update informations successfully');
+            }
+            catch(\Throwable $e)  
+            {
+                return abort(500);
+            }
+        }
     }
 
     /**

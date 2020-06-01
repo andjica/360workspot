@@ -3,7 +3,7 @@
     		<div class="row justify-content-center mb-5">
           <div class="col-md-7 heading-section text-center ftco-animate">
           	<span class="subheading">Job Categories</span>
-            <h2 class="mb-0">Top Categories</h2>
+            <h2 class="mb-0">Explore your Workspot</h2>
           </div>
         </div>
         <div class="row">

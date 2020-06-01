@@ -34,6 +34,7 @@ class BlogController extends Controller
         $this->data['countcities'] = City::count();
         $this->data['countaccounttypes'] = AccountType::count();
         $this->data['countblogs'] = Blog::count();
+        $this->data ['categories'] = Category::all();
        
         return $this->data;
     }

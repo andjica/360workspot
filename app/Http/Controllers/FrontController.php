@@ -8,6 +8,9 @@ use App\City;
 use App\Job;
 use App\Salary;
 use App\Blog;
+use App\User;
+use App\Post;
+use App\Skill;
 
 class FrontController extends Controller
 {
@@ -21,6 +24,8 @@ class FrontController extends Controller
         $this->data ['categories'] = Category::all();
         $this->data ['cities'] =  City::all();
         $this->data['blogsfilter'] = Blog::limit(3)->inRandomOrder()->get();
+        
+
         
         return $this->data;
     }
@@ -41,7 +46,7 @@ class FrontController extends Controller
 
         $jobsr = Job::limit(7)->inRandomOrder()->get();
 
-       
+    
 
         return view('pages.index', compact( 'cities', 'catweb','cateducation','catgraphic',
         'cataccount', 'catrestourant', 'catheatlt', 'categoriesall', 'jobsr', 'blogs'), $this->data);
@@ -103,7 +108,7 @@ class FrontController extends Controller
         $jobsr = Job::where('category_id',$categoryJob)->where('city_id',$cityJob)
         ->limit(4)->inRandomOrder()->get();
 
-        return view('pages.job', compact('job', 'jobname', 'jobsr'));
+        return view('pages.job', compact('job', 'jobname', 'jobsr'),$this->data);
 
         
     }
@@ -208,4 +213,48 @@ class FrontController extends Controller
     }
     
 
+    public function searchuser()
+    {
+        $users = User::with('post')->with('skill')->where('name', 'LIKE', '%' . request()->name . '%')->get();
+        
+        return view('pages.users-searched', compact('users'), $this->data);
+       
+    }
+
+    public function alluser()
+    {
+        
+        $posts = Post::with('user')->paginate(10);
+       
+        return view('pages.users-all', compact('posts'), $this->data);
+ 
+    }
+
+    public function filteruser()
+    {
+        
+        if(request()->all())
+        {
+            $cat = request()->categorysearch;
+            $cit = request()->citysearch;
+            $postcount = Post::where('category_id', $cat)->where('city_id', $cit)->count();
+            $posts = Post::where('category_id', $cat)->where('city_id', $cit)->paginate(10);
+
+            return view('pages.users-filter-response', compact('postcount', 'posts'), $this->data);
+            
+        }
+        return abort(404);
+    }
+
+    public function user($id)
+    {
+        $user = User::find($id) ?? abort(404);
+        $userId = $user->id;
+        $post = Post::where('user_id', $userId)->first();
+        $agenumber =  \Carbon\Carbon::parse($post->age)->diff(\Carbon\Carbon::now())->format('%y years');
+        $skillcount = Skill::where('user_id', $userId)->count();
+        $skill = Skill::where('user_id', $userId)->get();
+
+        return view('pages.user', compact('user', 'agenumber', 'post', 'skillcount', 'skill'), $this->data);
+    }
 }

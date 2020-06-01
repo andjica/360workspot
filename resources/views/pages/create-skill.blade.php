@@ -16,8 +16,10 @@
    
     <div class="row mt-3">
         <div class="col-lg-8 p-4 shadow">
-            @if($countskill > null)
-                @include('components.user.update-skill')
+        @if($skillcount > 0)
+                @foreach($skill as $ski)
+                    @include('components.user.update-skill')
+                @endforeach
             @else
             @include('components.user.create-skill')
             @endif

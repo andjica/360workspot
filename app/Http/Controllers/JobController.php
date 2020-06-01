@@ -50,7 +50,7 @@ class JobController extends Controller
      */
     public function create()
     {
-
+        
          request()->validate([
                 'title' => 'required',
                 'company' => 'required',
@@ -125,25 +125,18 @@ class JobController extends Controller
                 $job->expires = Carbon::now()->addMonths(12);
             }
 
-            try{
+       
                 $job->save();
                 return redirect()->back()->with('success', 'You made successfully job');
-            }
-            catch(\Throwable $e)
-            {
-                return abort(500);
-            }
+         
+       
             
 
-            
+        }
            
-          
-        }
-        else
-        {
-            return abort(501);
-        }
         
+        
+
 
 
 
