@@ -73,6 +73,8 @@
     float: left;
 	left: -332%;
 	column-count: 4;
+	border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
 		}
 	}
 	</style>

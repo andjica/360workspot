@@ -40,7 +40,7 @@
 				              	<div class="col-md-3">
 				              		<div class="form-group">
 				              			<div class="form-field">
-								    <input type="submit" class="form-control btn btn-warning new-cs " value="Search">
+								    <input type="submit" class="form-control btn btn-warning new-cs dati " value="Search">
 								</div>
 							</div>
 						</div>
@@ -67,6 +67,9 @@
         border-radius: 22px;
     margin-top: 60px;
     text-align: center;
+	}
+	.dati{
+		width: 332px;
 	}
 }
 </style>
