@@ -23,7 +23,7 @@ class PostController extends Controller
     public function __construct()
     {
         $this->data['cities'] = City::all();
-        $this->data['categories'] = Category::all();
+        $this->data['categories'] = Category::whereNull('sub_category_id')->get();
 
        
         return $this->data;
@@ -223,11 +223,21 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    
+    public function edit()
     {
-        $post = Post::find($id) ?? abort(404);
+        $userId = auth()->user()->id;
+        $post = Post::where('user_id', $userId)->first() ?? abort(404);
+       
 
-        return view('pages.update-user-about', compact('post'), $this->data);
+        if(request()->value)
+        {
+            $val = request()->value;
+            $subcategories = Category::where('sub_category_id', $val)->get();
+            return response()->json(['val' => $val, 'subcategories' => $subcategories ]);
+        }
+        return view('pages.update-user-about', compact('post', 'val'), $this->data);
+        
     }
 
     /**
@@ -237,61 +247,111 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update()
     {
         
         
 
         $userId = auth()->user()->id;
 
-        $post = Post::find($id) ?? abort(404);
+            $post = Post::where('user_id', $userId)->first() ?? abort(404);
             $post->user_id = $userId;
-            $post->category_id = request()->categories;
+            
             $post->city_id = request()->cities;
             $post->age = request()->birthday;
             $post->short_biography = request()->short;
             $post->more_about = request()->more;
             $post->status = request()->status;
 
-        if(request()->image){
 
-            $current = time();
-            $image = request()->file('image');
-            $name = $current.str_slug(request()->birthday).'.'.$image->getClientOriginalExtension();
-        
-            $destinationPath = public_path('/img-users');
-
-            $image->move($destinationPath, $name);
-
-            try{
-                //delete current image
-                $image_path = public_path('img-users/'.$post->image);
-                if(File::exists($image_path)) {
-                    File::delete($image_path);
-                }
-                //save new one 
-                $post->image = $name;
-                $post->save();
-                return redirect()->back()->with('success', 'You update informations successfully');
-            }
-            catch(\Throwable $e)  
+            if(request()->selectsub)
             {
-                return abort(500);
+                $post->category_id = request()->selectsub;
+                if(request()->image){
+
+                    $current = time();
+                    $image = request()->file('image');
+                    $name = $current.str_slug(request()->birthday).'.'.$image->getClientOriginalExtension();
+                
+                    $destinationPath = public_path('/img-users');
+        
+                    $image->move($destinationPath, $name);
+        
+                    try{
+                        //delete current image
+                        $image_path = public_path('img-users/'.$post->image);
+                        if(File::exists($image_path)) {
+                            File::delete($image_path);
+                        }
+                        //save new one 
+                        $post->image = $name;
+                        $post->save();
+                        return redirect()->back()->with('success', 'You update informations successfully');
+                    }
+                    catch(\Throwable $e)  
+                    {
+                        return abort(500);
+                    }
+                    
+                       
+                }
+                else
+                {
+                    try{
+                    $post->save();
+                    return redirect()->back()->with('success', 'You update informations successfully');
+                    }
+                    catch(\Throwable $e)  
+                    {
+                        return abort(500);
+                    }
+                }
+            }
+            else
+            {
+                $post->category_id = request()->categories;
+
+                if(request()->image){
+
+                    $current = time();
+                    $image = request()->file('image');
+                    $name = $current.str_slug(request()->birthday).'.'.$image->getClientOriginalExtension();
+                
+                    $destinationPath = public_path('/img-users');
+        
+                    $image->move($destinationPath, $name);
+        
+                    try{
+                        //delete current image
+                        $image_path = public_path('img-users/'.$post->image);
+                        if(File::exists($image_path)) {
+                            File::delete($image_path);
+                        }
+                        //save new one 
+                        $post->image = $name;
+                        $post->save();
+                        return redirect()->back()->with('success', 'You update informations successfully');
+                    }
+                    catch(\Throwable $e)  
+                    {
+                        return abort(500);
+                    }
+                    
+                       
+                }
+                else
+                {
+                    try{
+                    $post->save();
+                    return redirect()->back()->with('success', 'You update informations successfully');
+                    }
+                    catch(\Throwable $e)  
+                    {
+                        return abort(500);
+                    }
+                }
             }
             
-               
-        }
-        else
-        {
-            try{
-            $post->save();
-            return redirect()->back()->with('success', 'You update informations successfully');
-            }
-            catch(\Throwable $e)  
-            {
-                return abort(500);
-            }
-        }
     }
 
     /**

@@ -19,6 +19,7 @@ Route::get('/jobscategory/{id}', 'FrontController@jobcategory');
 Route::get('/jobsajax', 'FrontController@jobsajax');
 Route::get('/search', 'FrontController@search')->name('search');
 Route::get('/search-user-filter', 'FrontController@filteruser')->name('search-user-filter');
+Route::get('/search-company-category-subcategory', 'FrontController@searcbythree')->name('search-company-category-subcategory');
 Route::get('/blogs-all', 'FrontController@blogs')->name('blogs-all');
 Route::get('/jobs-all', 'FrontController@jobsall')->name('jobs-all');
 Route::post('/search-user', 'FrontController@searchuser')->name('search-user');
@@ -41,8 +42,10 @@ Route::group(['middleware' => ['checkcompany']], function ()
 //user - posts //TREBA SE URADI MIDDLEWARE ZA ONE SA ROLE 3(NE ZABORAVI ANDJELA)
 Route::get('/user-panel', 'PostController@index');
 Route::post('/add-post', 'PostController@store')->name('add-post');
-Route::get('/edit/{id}', 'PostController@edit')->name('edit/{id}');
-Route::post('/update-post/{id}', 'PostController@update')->name('update-post');
+
+Route::get('/editpost', 'PostController@edit')->name('editpost');
+
+Route::post('/update-post', 'PostController@update')->name('update-post');
 Route::get('/create-video', 'PostController@video')->name('create-video');
 Route::post('/update-video', 'PostController@updatevideo')->name('update-video');
 Route::get('/create-social', 'PostController@social')->name('create-social');

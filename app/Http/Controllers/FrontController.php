@@ -238,11 +238,52 @@ class FrontController extends Controller
         {
             $cat = request()->categorysearch;
             $cit = request()->citysearch;
+
+            $category =  Category::where('id', $cat)->first();
+            $categoryname = $category->name;
+
+
+            $city = City::where('id', $cit)->first();
+            $cityname = $city->name;
+
+            $subcats = Category::where('sub_category_id', '=', $cat)->get();
+
+
+            
             $postcount = Post::where('category_id', $cat)->where('city_id', $cit)->count();
             $posts = Post::where('category_id', $cat)->where('city_id', $cit)->paginate(10);
 
-            return view('pages.users-filter-response', compact('postcount', 'posts'), $this->data);
+            return view('pages.users-filter-response', compact('postcount', 'posts', 'subcats', 'categoryname', 'cityname', 'cat', 'cit'), $this->data);
             
+        }
+        return abort(404);
+    }
+
+    public function searcbythree()
+    {
+        if(request()->all())
+        {
+            $cat = request()->categoryId;
+            $cit = request()->cityId;
+            $sub = request()->subcatId;
+
+            $category =  Category::where('id', $cat)->first();
+            $categoryname = $category->name;
+
+            $city = City::where('id', $cit)->first();
+            $cityname = $city->name;
+
+            $subn = Category::where('id', '=', $sub)->first();
+            $subname = $subn->name;
+            
+            $subcats = Category::where('sub_category_id', '=', $cat)->whereNotIn('id', [$sub])->get();
+        
+            
+            $posts = Post::where('category_id', $sub)->where('city_id', $cit)->paginate(5);
+
+            
+            return view('pages.finduser', compact('categoryname', 'cityname', 'posts', 'subname', 'subcats', 'cat', 'cit'), $this->data);
+          
         }
         return abort(404);
     }

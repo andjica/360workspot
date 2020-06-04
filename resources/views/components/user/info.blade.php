@@ -24,7 +24,7 @@
     </div>
 </div>
 <div class="row">
-        <a href="{{asset('edit/'.$post->id)}}" class="btn btn-secondary btn-lg btn-block">
+        <a href="{{asset('editpost')}}" class="btn btn-secondary btn-lg btn-block">
         <i class="fa fa-wrench fa-2x text-warning"></i>Edit your profile information
         </a>
 </div>

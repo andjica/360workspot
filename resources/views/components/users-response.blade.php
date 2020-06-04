@@ -1,5 +1,5 @@
 @foreach($posts as $post)
-        <div class="job-post-item shadow col-lg-5 m-2">
+        <div class="job-post-item shadow col-lg-5 mr-5">
                     <div class="row">
                             <div class="col-lg-6 border-right">
                                 <div class="rounded-circle  image-background2 mt-2 shadow mx-auto"  style="background-image: url({{asset('/img-users/'.$post->image)}});     background-size: cover;">
@@ -8,10 +8,10 @@
                               </div>
                           
                               <div class="col-lg-6">
-                              <p class="text-dark mt-2">{{$post->user->name}}, from {{$post->city->name}}</p>
-                             <p class="mt-2"> Category: {{$post->category->name}} <Br>Status: {{$post->status}} </p>
-                            
-                               
+                              <p class="text-dark mt-2">{{$post->user->name}}, from {{$post->city->name}}, </p>
+                                <p class="mt-2"> Category: {{$post->category->name}}, {{$post->category->subcategory->name}} <Br>Status: {{$post->status}} </p>
+                                <p class="mt-2">Email:{{$post->user->email}}</p>
+                              
                             </div>
                             </div>
                             <hr>

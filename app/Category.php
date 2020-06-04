@@ -19,4 +19,9 @@ class Category extends Model
     {
         return $this->hasMany(Job::class, 'category_id');
     }
+
+    public function subcategory()
+    {
+        return $this->hasOne(Category::class, 'sub_category_id');
+    }
 }

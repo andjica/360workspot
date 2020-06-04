@@ -95,7 +95,7 @@
     
 
                         <br>
-Category: {{$post->category->name}}<br>
+                        Category: {{$post->category->name}}<br>
                         City: {{$post->city->name}} <br>
                         Status: {{$post->status}}<br>
                         Email: {{$post->user->email}}<br>

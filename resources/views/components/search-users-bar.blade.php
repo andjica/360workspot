@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container bg-light pb-2">
 <div class="row">
 <div class="col-lg-12 mt-4">
 <form action="{{route('search-user-filter')}}" method="get" id="form-search"> 
@@ -61,7 +61,7 @@
 
 @media screen and (min-width:968px){
 	.nekaproba{
-		background-color: #95b9ec42;
+	background-color: #95b9ec42;
     padding-top: 76px;
     padding: 32px;
         border-radius: 22px;
