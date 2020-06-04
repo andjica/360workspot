@@ -50,7 +50,6 @@
                 <div class="block-27">
                 <ul>
                 <li>  {{$posts->links()}}</li>
-
                 </ul>
                 </div>
                 </div>

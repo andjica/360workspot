@@ -7,11 +7,11 @@
 	<h4 class="hah nemega">Find your users workspot with the perfect skills and professional equipment.</h4>
 
 	  <div class="row no-gutters new-res">
-	    <div class="col-md-4 mr-md-2">
+	    <div class="col-md-3 mr-md-2">
 				            <div class="form-group">
 				              	<div class="form-field">
 					              	<div class="select-wrap">
-												  <select class="sizing js-example-basic-single form-control new-block search-slt border-warning bg-light sm-select2" name="categorysearch" id="categorys">
+												  <select class="andjicakat sizing js-example-basic-single  form-control new-block search-slt border-warning bg-light sm-select2" name="categorysearch" id="categorys">
 													<option value="">Category</option>
 														@foreach($categories as $category)
 															<option value="{{$category->id}}">{{$category->name}}</option>
@@ -22,7 +22,8 @@
 									        </div>
 								      </div>
 				          </div>
-							<div class="col-md-4 mr-md-2">
+						  
+							<div class="col-md-3 mr-md-2">
 				              				<div class="form-group">
 				              					<div class="form-field">
 					              				<div class="select-wrap">

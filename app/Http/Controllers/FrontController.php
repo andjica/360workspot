@@ -239,6 +239,7 @@ class FrontController extends Controller
             $cat = request()->categorysearch;
             $cit = request()->citysearch;
 
+
             $category =  Category::where('id', $cat)->first();
             $categoryname = $category->name;
 
@@ -249,9 +250,11 @@ class FrontController extends Controller
             $subcats = Category::where('sub_category_id', '=', $cat)->get();
 
 
+            $posts = Category::where('sub_category_id', $cat)->paginate(10);
             
-            $postcount = Post::where('category_id', $cat)->where('city_id', $cit)->count();
-            $posts = Post::where('category_id', $cat)->where('city_id', $cit)->paginate(10);
+            
+            $postcount = Category::with('post')->where('sub_category_id', $cat)->count();
+            //$posts = Post::where('category_id', $cat)->where('city_id', $cit)->paginate(10);
 
             return view('pages.users-filter-response', compact('postcount', 'posts', 'subcats', 'categoryname', 'cityname', 'cat', 'cit'), $this->data);
             

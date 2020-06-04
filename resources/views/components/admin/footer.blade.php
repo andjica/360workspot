@@ -43,44 +43,8 @@
   <script src="{{asset('/')}}js/counter-effect.js"></script>
   <script src="{{asset('/')}}js/back.js"></script>
 
-  <script>
-      $(document).ready(function(){
-      
-
-        $('select.andjicakat').change(function(){
-       　
+  <script src="{{asset('/')}}js/select-sub.js">
     
-          
-          let value = $('#selecandjica').val(); 
-        
-            $.ajax({
-                type: 'GET',
-                URL: 'http://localhost/workspot/public/editpost/',
-                data: {
-                  value : value
-                },
-                
-                success:function(response){
-               
-                 
-                  text = "";
-                
-                $.each(response.subcategories, function(index, subcategories){
-                  text+= "<option class='form-control' value='"+subcategories['id']+"'>"+subcategories['name'];
-                   
-                })
-               
-
-                $("#selectsub").css("display", "block");
-
-                $('#selectsub').html(text);
-                
-                }
-                
-            })
-        
-      });
-      });
   </script>
 </body>
 
