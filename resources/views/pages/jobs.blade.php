@@ -8,8 +8,18 @@
 @isset($categoryname)
         <p class="breadcrumbs mb-0"><span class="mr-3"><a href="index.html">Home
              <i class="ion-ios-arrow-forward"></i></a></span> <span>Browse Job</span></p>
-        <h1 class="mb-3 bread">{{$categoryname->name}}</h1>
+        <h1 class="mb-3 bread">{{$categoryname->name}},&nbsp; @isset($cityname) {{$cityname->name}} @endisset</h1>
         @endisset
+        @foreach($subcats as $sub)
+            <form action="{{route('search-byall')}}" method="GET">
+                <input type="hidden" name="categoryId" value="{{$idcategory}}">
+                <input type="hidden" name="cityId" value="{{$idcity}}">
+                <input type="hidden" name="subcatId" value="{{$sub->id}}">
+                <ul style="    float: left; list-style:none;">
+                    <li><button type="submit" class="btn border bg-light">{{$sub->name}}</button></li>
+                </ul>
+            </form>
+        @endforeach
 </div>
 </div>
 </div>

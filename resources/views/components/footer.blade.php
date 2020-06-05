@@ -105,6 +105,44 @@
   <script src="{{asset('/')}}js/contact-form.js"></script>
   <script src="{{asset('/')}}js/apply-job.js"></script>
   <script src="{{asset('/')}}js/main-search.js"></script>
-  
+  <script>
+    $(document).ready(function(){
+      
+
+      $('select.andjicasel').change(function(){
+     　
+       
+        
+        let value = $('#sel_depart').val(); 
+      
+          $.ajax({
+              type: 'GET',
+              URL: 'http://localhost/workspot/public/jobs/',
+              data: {
+                value : value
+              },
+              
+              success:function(response){
+             
+               
+                text = "";
+              
+              $.each(response.subcategories, function(index, subcategories){
+                text+= "<option class='form-control  bg-info' value='"+subcategories['id']+"'>"+subcategories['name'];
+                 
+              })
+             
+    
+              $("#selectsub").css("display", "block");
+    
+              $('#selectsub').html(text);
+              text2 = "now select your subcategory";
+              $('#pandjica').html(text2);
+              }
+              
+          })
+        });
+      });
+    </script>
   </body>
 </html>

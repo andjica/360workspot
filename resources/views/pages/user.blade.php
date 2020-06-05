@@ -35,32 +35,36 @@
                         </p>
                     </div>
 
-                    <div class="col-lg-5 bg-white shadow tacn012 d-flex">
+                    <div class="col-lg-5 bg-white shadow tacn012 d-flex andjicaback">
                         <div class=" row d-flex">
 
-                            <div class="col-lg-4">
-                            <img src="../images/lion.jpg" style="    width: 100%;">
+                            <div class="col-lg-4 d-flex justify-content-center p-4">
+                            <img src="{{asset('/')}}img/iconinsta.png" class="img-fluid zoom shadow rounded-circle" style="height:100px;">
                             </div>
 
-                            <div class="col-lg-4">
-                            <img src="../images/lion.jpg" style="    width: 100%;">
+                            <div class="col-lg-4 d-flex justify-content-center p-4">
+                            <img src="{{asset('/')}}img/iconweb.png" class="img-fluid zoom shadow rounded-circle" style="height:100px;">
                             </div>
 
-                            <div class="col-lg-4">
-                            <img src="../images/lion.jpg" style="    width: 100%;">
+                            <div class="col-lg-4 d-flex justify-content-center p-4">
+                            <img src="{{asset('/')}}img/iconyoutube.png" class="img-fluid zoom shadow rounded-circle" style="height:100px;">
+                            </div>
+                            <div class="col-lg-4 d-flex justify-content-center p-4">
+                            <img src="{{asset('/')}}img/iconyoutube.png" class="img-fluid zoom shadow rounded-circle" style="height:100px;">
+                            </div>
+                            <div class="col-lg-4 d-flex justify-content-center p-4">
+                            <img src="{{asset('/')}}img/iconyoutube.png" class="img-fluid zoom shadow rounded-circle" style="height:100px;">
+                            </div>
+                           
+                            <div class="col-lg-4 d-flex justify-content-center p-4">
+                            <img src="{{asset('/')}}img/iconcontact.png" class="img-fluid zoom shadow rounded-circle float-left" style="height:100px;">
+                           
+
                             </div>
 
-                            <div class="col-lg-4">
-                            <img src="../images/lion.jpg" style="    width: 100%;">
-                            </div>
+                        
 
-                            <div class="col-lg-4">
-                            <img src="../images/lion.jpg" style="    width: 100%;">
-                            </div>
-
-                            <div class="col-lg-4">
-                            <img src="../images/lion.jpg" style="    width: 100%;">
-                            </div>
+                           
                         </div>
 
                        
@@ -265,6 +269,20 @@
   header video {
     display: none;
   }
+}
+.zoom {
+   
+    transition: transform .2s; /* Animation */
+    
+    margin: 0 auto;
+}
+
+.zoom:hover {
+    transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+.andjicaback
+{
+    background: linear-gradient(to right, white 0%, white 100%);
 }
 </style>
          

@@ -19,6 +19,7 @@ Route::get('/jobscategory/{id}', 'FrontController@jobcategory');
 Route::get('/jobsajax', 'FrontController@jobsajax');
 Route::get('/search', 'FrontController@search')->name('search');
 Route::get('/search-user-filter', 'FrontController@filteruser')->name('search-user-filter');
+Route::get('/search-byall', 'FrontController@searchbyall')->name('search-byall');
 Route::get('/search-company-category-subcategory', 'FrontController@searcbythree')->name('search-company-category-subcategory');
 Route::get('/blogs-all', 'FrontController@blogs')->name('blogs-all');
 Route::get('/jobs-all', 'FrontController@jobsall')->name('jobs-all');

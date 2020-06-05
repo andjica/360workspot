@@ -36,15 +36,24 @@
                    
                         
                        @foreach($posts as $post)
-        <div class="job-post-item shadow col-lg-5 mr-5">
+        <div class="job-post-item shadow col-lg-4">
                     <div class="row">
-                            <div class="col-lg-6 border-right">
-                                <div class="rounded-circle  image-background2 mt-2 shadow mx-auto"  style="background-image: url({{asset('/img-users/'.$post->image)}});     background-size: cover;">
+                            <div class="col-lg-12 border-right">
+                                <div class="rounded-circle  image-background2 mt-2 shadow mx-auto"  style="background-image: url({{asset('/img-users/'.$post->image)}});       background-size: cover;
+    position: relative;
+    width: 100%;
+    height: 320px;
+    border-radius: 20px !important;
+    top: -25px;">
                                 </div>
-                               
+                                <img src="./img/iconprofile.png" style="position: absolute;
+    top: -15px;
+    height: 24%;
+    left: 30px;">
+                                </div
                               </div>
                           
-                              <div class="col-lg-6">
+                              <div class="col-lg-12">
                               <p class="text-dark mt-2">{{$post->user->name}}, from {{$post->city->name}}, </p>
                                 <p class="mt-2">@isset($categoryname){{$categoryname}}@endisset ,  @isset($subname){{$subname}}@endisset  <Br>Status: {{$post->status}} </p>
                                 <p class="mt-2">Email:{{$post->user->email}}</p>
@@ -53,7 +62,7 @@
                             </div>
                             <hr>
                             <div class="row">
-                            <a href="{{asset('/user/'.$post->user_id)}}" class="btn btn-warning text-white mx-auto m-2">View more about  <span class="icon-heart text-danger"></span></a>
+                            <a href="{{asset('/user/'.$post->user_id)}}" class="btn btn-warning text-white mx-auto m-2">View more about {{$post->user->name}} <span class="icon-heart text-danger"></span></a>
                             </div>
                         </div>
                   

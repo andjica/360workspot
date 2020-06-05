@@ -5,8 +5,8 @@
 	<div class="container sickness deskic nekaproba">
 	<h1 class="hah">FIND Peoples</h1>
 	<h4 class="hah nemega">Find your users workspot with the perfect skills and professional equipment.</h4>
-
-	  <div class="row no-gutters new-res">
+	<br>
+	  <div class="row no-gutters new-res d-flex justify-content-center">
 	    <div class="col-md-3 mr-md-2">
 				            <div class="form-group">
 				              	<div class="form-field">
@@ -38,7 +38,7 @@
 									        </div>
 								        </div>
 				              </div>
-				              	<div class="col-md-3">
+				              	<div class="col-md-4">
 				              		<div class="form-group">
 				              			<div class="form-field">
 								    <input type="submit" class="form-control btn btn-warning new-cs dati " value="Search">

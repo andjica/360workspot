@@ -13,7 +13,12 @@ class Job extends Model
 
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'category_id');
+    }
+
+    public function subcategory()
+    {
+        return $this->belongsTo(Category::class, 'sub_category_id');
     }
 
     public function city()

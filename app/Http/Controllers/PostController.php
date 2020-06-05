@@ -39,6 +39,14 @@ class PostController extends Controller
         $skillcount = Skill::where('user_id', $auth)->count();
         $skill = Skill::where('user_id', $auth)->get();
 
+        if(request()->value)
+        {
+        
+            $val = request()->value;
+            $subcategories = Category::where('sub_category_id', $val)->get();
+            return response()->json(['val' => $val, 'subcategories' => $subcategories ]);
+        }
+
         if($postcount > 0)
         {    $agenumber =  \Carbon\Carbon::parse($post->age)->diff(\Carbon\Carbon::now())->format('%y years');
             return view('pages.user-panel', compact('post', 'agenumber', 'postcount', 'skillcount', 'skill'), $this->data);
@@ -163,13 +171,15 @@ class PostController extends Controller
             'city' => 'required',
             'category' => 'required',
             'birthday' => 'required',
-            'status' => 'required'
+            'status' => 'required',
+            'selectsub' => 'required'
         ],
         [
             'city.required' => 'Please choose city',
             'category.required' => 'Please choose category',
             'birthday.required' => 'Enter your birthday',
-            'status.required' => 'Please choose status'
+            'status.required' => 'Please choose status',
+            'selectsub' => 'You must choose sub category'
         ]);
 
         $userId = auth()->user()->id;
@@ -186,7 +196,7 @@ class PostController extends Controller
 
             $post = new Post();
             $post->user_id = $userId;
-            $post->category_id = request()->category;
+            $post->category_id = request()->selectsub;
             $post->city_id = request()->city;
             $post->age = request()->birthday;
             $post->short_biography = request()->about;

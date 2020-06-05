@@ -15,18 +15,31 @@
 						<option value="{{$city->id}}">{{$city->name}}</option>
 					@endforeach
 				</select>
-			<p class="text-danger" id="er-city"></p>																
+        @if ($errors->has('city')) 
+      <p class="text-danger">{{$errors->first('city')}}</p>
+    @endif
   </div>
+
   <div class="form-group">
   <i class="fas fa-volleyball-ball fa-2x text-primary"></i> 
     <label for="Category">Choose category that explain your main skill</label>
-        <select class="form-control" name="category" id="cats">
+        <select class="form-control andjicakat" name="category" id="selecandjica">
           <option value="">Category</option>
 					@foreach($categories as $cat)
 						<option value="{{$cat->id}}">{{$cat->name}}</option>
 					@endforeach
 				</select>
-			<p class="text-danger" id="er-cat"></p>																
+        @if ($errors->has('category')) 
+      <p class="text-danger">{{$errors->first('category')}}</p>
+    @endif															
+  </div>
+  <div class="form-group">
+  <select name="selectsub" id="selectsub" class="form-control" style="display: none;">
+    
+    </select>
+    @if ($errors->has('selectsub')) 
+      <p class="text-danger">{{$errors->first('selectsub')}}</p>
+    @endif
   </div>
   <div class="form-group">
   <i class="fas fa-birthday-cake fa-2x text-warning"></i>

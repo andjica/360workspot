@@ -8,11 +8,11 @@
 @isset($categoryname)
         <p class="breadcrumbs mb-0"><span class="mr-3"><a href="index.html">Home
              <i class="ion-ios-arrow-forward"></i></a></span> <span>Browse Job</span></p>
-        <h1 class="mb-3 bread">{{$categoryname->name}}, &nbsp;@isset($cityname) {{$cityname->name}} @endisset</h1>
+        <h1 class="mb-3 bread">{{$categoryname->name}},&nbsp; @isset($cityname) {{$cityname->name}} @endisset</h1>
         @endisset
         @foreach($subcats as $sub)
             <form action="{{route('search-byall')}}" method="GET">
-                <input type="hidden" name="categoryId" value="{{$idcategory}}">
+            <input type="hidden" name="categoryId" value="{{$idcategory}}">
                 <input type="hidden" name="cityId" value="{{$idcity}}">
                 <input type="hidden" name="subcatId" value="{{$sub->id}}">
                 <ul style="    float: left; list-style:none;">
@@ -25,16 +25,14 @@
 </div>
 </div>
 @if(request()->all() && count($jobs) > 0)
-
-      
-        <section class="ftco-section bg-light no-padding m-5">
+    <section class="ftco-section bg-light no-padding m-5">
         <div class="container">
         <div class="row">
         <div class="col-lg-9 pr-lg-4">
         @include('components.backandall')
         
         <div class="row" id="jobsall">
-              
+                
                 @foreach($jobs as $job)
                 <div class="col-md-12 ftco-animate">
                 
@@ -44,8 +42,8 @@
 
                    
                     <img src="{{asset('/img-jobs/'.$job->url)}}" class="img-fluid" width="170px" style="width:15%;">
-                    <h4 class="mr-3 text-dark">Category:@isset($categoryname) {{$categoryname->name}} @endisset, &nbsp;{{$job->category->name}}
-                    {{$job->name}}, <Br>&nbsp;{{$job->title}}</h4>
+                    <h4 class="mr-3 text-dark">Category:@isset($categoryname) {{$categoryname->name}}@endisset, {{$job->category->name}} , &nbsp;
+                     <Br>&nbsp;{{$job->title}}</h4>
                     </div>
                     <div class="job-post-item-body d-block d-md-flex">
                     <div class="mr-3">
@@ -66,8 +64,8 @@
                     </div>
                     </div>
                 </div>
-                @endforeach
               
+                @endforeach
             </div>
         <div class="row mt-5">
         <div class="col text-center">
@@ -79,7 +77,7 @@
         </div>
         </div>
         </div>
-          
+           
         </div>
             @include('components.filter')
         </div>
@@ -87,22 +85,17 @@
         </section>
        
         @else
-    
+      
         <section class="ftco-section bg-light no-padding m-5">
         <div class="container">
         <div class="row">
         <div class="col-lg-9 pr-lg-4">
             @include('components.backandall')
-                <div class="alert alert-danger" role="alert">
-                @isset($categoryname)
-                <h2 class="mb-4"> Sory there is no job in  {{$categoryname->name}} category</h2>
                 
-                @endisset
-                </div>
-                @include('components.jobs')
-
+                <div class="alert alert-danger" role="alert">
+                <h3>Sorry there is no jobs in this kind of filter </h3>
             </div>
-      
+        </div>
         @include('components.filter')
         </div>
         </div>

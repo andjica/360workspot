@@ -1,25 +1,29 @@
 <div class="col-lg-3 sidebar shadow-sm mt-2">
         <div class="sidebar-box bg-white  ftco-animate ">
-        <h3 class="heading-sidebar"><i class="fas fa-sort  text-warning p-1 mt-1 rounded"></i> &nbsp; Filter your job</h3>
-        
+        <h3 class="heading-sidebar m-2"><i class="fas fa-sort  text-warning p-1 mt-1 rounded"></i> &nbsp; Filter your job</h3>
+        <br>
         <form action="{{route('search')}}" method="GET" class="browse-form" id="my-form">
-                @csrf
-                <select  class="js-example-basic-single  form-control search-slt border-warning bg-light sm-select2" id="sel_depart" name="categorysearch">
+          
+                <select  class="form-control border-warning bg-light andjicasel" id="sel_depart" name="categorysearch">
 		        <option value="">Category</option>
 			@foreach($categories as $category)
 				<option value="{{$category->id}}" class="cats">{{$category->name}}</option>
 			@endforeach
                 </select>
+                <select name="selectsub" id="selectsub" class="form-control" style="display: none;">
+    
+                </select>
+                <p class="text-warning" id="pandjica"><p>
                 <p class="text-danger" id="cat-mistake"></p>
         
-                <select class="js-example-basic-single2 form-control search-slt border-warning bg-light sm-select2" id="sel_depart2" name="citysearch">
+                <select class="form-control border-warning bg-light" id="sel_depart2" name="citysearch">
 			<option value="">City</option>
 				@foreach($cities as $city)
 					<option value="{{$city->id}}">{{$city->name}}</option>
 				@endforeach
 		</select>
                 <p class="text-danger" id="city-mistake"></p>
-                <select  class="js-example-basic-single3  form-control search-slt border-warning bg-light sm-select2" id="sel_depart3" name="salarysearch">
+                <select  class="form-control border-warning bg-light" id="sel_depart3" name="salarysearch">
 		        <option value="">Salary</option>
 			@foreach($salaries as $salary)
 				<option value="{{$salary->id}}" class="cats">{{$salary->salary_between}}</option>

@@ -62,15 +62,23 @@
 
 <!-- Heading -->
 <div class="sidebar-heading">
-  Addons
+  Welcome {{auth()->user()->name}}
 </div>
 
 
 @if(auth()->user()->role_id == 3)
+@if($postcount > 0)
+<li class="nav-item">
+  <a class="nav-link text-info" href="{{asset('/user/'.auth()->user()->id)}}">
+  <i class="fas fa-user text-info"></i>
+  <span>Your profile</span></a>
+</li>
+
+@endif
 <li class="nav-item">
   <a class="nav-link" href="{{asset('/user-panel')}}">
   <i class="fas fa-briefcase"></i>
-    <span>Your profile</span></a>
+    <span>Panel</span></a>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="">

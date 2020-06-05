@@ -15,7 +15,10 @@
     top: -26px;
     border-radius: 10px !important;">
                                     </div>
-                                
+                                    <img src="./img/iconprofile.png" style="position: absolute;
+    top: -15px;
+    height: 24%;
+    left: 30px;">
                                 </div>
                             
                                 <div class="col-lg-12">
@@ -27,7 +30,7 @@
                                 </div>
                                 <hr>
                                 <div class="row">
-                                <a href="{{asset('/user/'.$post->id)}}" class="btn btn-warning text-white mx-auto m-2">View more about {{$post->name}} <span class="icon-heart text-danger"></span></a>
+                                <a href="{{asset('/user/'.$post->id)}}" class="btn btn-warning text-white mx-auto m-2">View more about {{$post->user->name}} {{$post->name}} <span class="icon-heart text-danger"></span></a>
                                 </div>
                             </div>
                     
