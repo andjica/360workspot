@@ -7,8 +7,8 @@
 <div class="col-md-12 ftco-animate text-center mb-5">
 @isset($categoryname)
         <p class="breadcrumbs mb-0"><span class="mr-3"><a href="index.html">Home
-             <i class="ion-ios-arrow-forward"></i></a></span> <span>Browse Job</span></p>
-        <h1 class="mb-3 bread">{{$categoryname->name}}, &nbsp;@isset($cityname) {{$cityname->name}} @endisset</h1>
+             <i class="ion-ios-arrow-forward"></i></a></span> <span>@isset($cityname) {{$cityname->name}} @endisset</span></p>
+        <h1 class="mb-3 bread">{{$categoryname->name}}, &nbsp; @isset($subname){{$subname->name}}@endisset</h1>
         @endisset
         @foreach($subcats as $sub)
             <form action="{{route('search-byall')}}" method="GET">

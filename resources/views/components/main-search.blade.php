@@ -8,6 +8,7 @@
 				              <a class="nav-link bg-light" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="false">
 								  <img src="{{asset('/')}}images/version15.png" class="img-fluid" width="105">
 							  </a>
+				              <a class="nav-link active mr-md-1 " id="v-pills-1-tab" href="{{asset ('./register')}}" role="tab" aria-selected="true">Post a Job</a>
 
 				            </div>
 				          </div>

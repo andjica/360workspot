@@ -9,9 +9,9 @@
         <div class="row no-gutters slider-text align-items-end justify-content-start">
         <div class="col-md-12 ftco-animate text-center mb-5">
         @isset($categoryname)
-        <p class="breadcrumbs mb-0"><span class="mr-3"><a href="index.html">Home
-             <i class="ion-ios-arrow-forward"></i></a></span> <span>{{$categoryname}}</span></p>
-        <h1 class="mb-3 bread">Browse Job</h1>
+        <p class="breadcrumbs mb-0"><span class="mr-3"><a href="{{asset('/')}}">Home
+             <i class="ion-ios-arrow-forward"></i></a></span> <span>Browse Job</span></p>
+        <h1 class="mb-3 bread">@isset($maincategoryname){{$maincategoryname->name}}@endisset,&nbsp;{{$categoryname->name}}</h1>
         @endisset
         </div>
         </div>
@@ -28,7 +28,7 @@
                 <h2 class="mb-4"> Sory there is no job in  {{$categoryname->name}} category</h2>
                 @endisset
                 </div>
-        @include('components.jobs')
+        @include('components.jobs-category')
         </div>
         @include('components.filter')
         </div>
@@ -44,9 +44,9 @@
         <div class="row no-gutters slider-text align-items-end justify-content-start">
         <div class="col-md-12 ftco-animate text-center mb-5">
         @isset($categoryname)
-        <p class="breadcrumbs mb-0"><span class="mr-3"><a href="index.html">Home
+        <p class="breadcrumbs mb-0"><span class="mr-3"><a href="{{asset('/')}}">Home
              <i class="ion-ios-arrow-forward"></i></a></span> <span>Browse Job</span></p>
-        <h1 class="mb-3 bread">{{$categoryname->name}}</h1>
+        <h1 class="mb-3 bread">@isset($maincategoryname){{$maincategoryname->name}}@endisset,&nbsp;{{$categoryname->name}}</h1>
         @endisset
         </div>
         </div>
@@ -58,7 +58,7 @@
         <div class="row">
         <div class="col-lg-9 pr-lg-4">
         @include('components.backandall')
-        @include('components.jobs')
+        @include('components.jobs-category')
         
         </div>
             @include('components.filter')

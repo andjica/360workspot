@@ -4,7 +4,7 @@
     <title>360 Workspot - the Right place for the right jobs around the world - Job Database platform</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" type="image/png" href="./images/version15.png" style="background-size:contain;">
+    <link rel="icon" type="image/png" href="{{('/')}}images/version15.png" style="background-size:contain;">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('/')}}css/select2.css">
 

@@ -25,7 +25,7 @@ class FrontController extends Controller
         $this->data ['categories'] = Category::whereNull('sub_category_id')->get();
         $this->data ['cities'] =  City::all();
         $this->data['blogsfilter'] = Blog::limit(3)->inRandomOrder()->get();
-        
+        $this->data['salaries'] =  Salary::all();
 
         
         return $this->data;
@@ -43,13 +43,10 @@ class FrontController extends Controller
 
         $blogs = Blog::orderBy('created_at', 'DESC')->limit(4)->inRandomOrder()->get();
 
-        $categoriesall = Category::where('sub_category_id',1)->paginate(16);
+        $categoriesall = Category::whereNotNull('sub_category_id')->limit(16)->inRandomOrder()->get();
+        
         $catcount = Category::where('sub_category_id', 1)->with('jobs')->count();
         
-           
-
-
-
         $jobsr = Job::limit(7)->inRandomOrder()->get();
 
         if(request()->value)
@@ -96,8 +93,9 @@ class FrontController extends Controller
             $cityname = City::where('id', $idcity)->first();
             //for filtering
             
+
             $cities = City::all();
-            $salaries = Salary::all();
+        
 
             if(request()->value)
             {
@@ -139,14 +137,23 @@ class FrontController extends Controller
                 ->where('category_id', $category)
                 ->orderBy('created_at', 'DESC')
                 ->paginate(5);
-    
+            
         $categoryname = Category::where('id', $category)->first();
-
-        //for filter
+        $id = $categoryname->sub_category_id;
+        
+        $maincategoryname = Category::where('id', $id)->first();
+        
       
-        $salaries = Salary::all();
+        
 
-        return view('pages.jobs-category', compact('jobs', 'categoryname', 'categories', 'cities', 'salaries'), $this->data);
+        if(request()->value)
+        {
+        $val = request()->value;
+        $subcategories = Category::where('sub_category_id', $val)->get();
+        return response()->json(['val' => $val, 'subcategories' => $subcategories ])->header("Access-Control-Allow-Origin",  "*");
+        }
+
+        return view('pages.jobs-category', compact('jobs', 'maincategoryname','categoryname', 'categories', 'cities', 'salaries'), $this->data);
 
           
     }
@@ -184,10 +191,10 @@ class FrontController extends Controller
        
      
         $subcats = Category::where('sub_category_id', '=', $idcategory)->get();
-
+        $subname = Category::where('id', $idcategorysub)->first();
         $categoryname = Category::where('id', $idcategory)->first();
         $cityname = City::where('id', $idcity)->first();
-        $salaries = Salary::all();
+ 
         
         if(request()->value)
         {
@@ -195,7 +202,7 @@ class FrontController extends Controller
         $subcategories = Category::where('sub_category_id', $val)->get();
         return response()->json(['val' => $val, 'subcategories' => $subcategories ])->header("Access-Control-Allow-Origin",  "*");
         }
-        return view('pages.search', compact('jobs', 'idcategory', 'cityname','idcity','cities', 'salaries','categoryname', 'subcats'), $this->data);
+        return view('pages.search', compact('jobs', 'subname','idcategory', 'cityname','idcity','cities', 'salaries','categoryname', 'subcats'), $this->data);
 
     }
 
@@ -225,6 +232,12 @@ class FrontController extends Controller
     {
         
         return view('pages.contact');
+    }
+
+    public function about()
+    {
+        
+        return view('pages.about');
     }
     
 
@@ -346,12 +359,13 @@ class FrontController extends Controller
  
             $categoryname = Category::where('id', $idcategory)->first();
             $subcats = Category::where('sub_category_id', $idcategory)->get();
-              
+            
+            $subname = Category::where('id', $idsub)->first();
             
             //for filtering
             
             $cities = City::all();
-            $salaries = Salary::all();
+           
             $cityname = City::where('id', $idcity)->first();
 
             if(request()->value)
@@ -361,7 +375,23 @@ class FrontController extends Controller
                 return response()->json(['val' => $val, 'subcategories' => $subcategories ]);
             }
            
-            return view('pages.jobs-searchbyall', compact('jobs', 'cityname','idsub','idcategory', 'idcity','cities', 'salaries','categoryname', 'subcats'), $this->data);
+            return view('pages.jobs-searchbyall', compact('jobs', 'subname','cityname','idsub','idcategory', 'idcity','cities', 'salaries','categoryname', 'subcats'), $this->data);
         }
+    }
+
+    public function jobsbymaincategory($id)
+    {
+        $category = Category::find($id) ?? abort(404);
+        $categoryname = Category::where('id', $category->id)->first();
+        
+        $jobs = Category::where('sub_category_id', $category->id)
+            ->whereHas('jobs')
+            ->paginate(10);
+        
+        
+        $subcats = Category::where('sub_category_id', '=', $category->id)->get();
+        $subname = Category::where('sub_category_id', $category->id)->first();
+
+        return view('pages.only-category', compact('subcategories', 'subcats', 'categoryname', 'jobs'), $this->data);
     }
 }

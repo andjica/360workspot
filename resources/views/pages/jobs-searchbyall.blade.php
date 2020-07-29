@@ -7,8 +7,8 @@
 <div class="col-md-12 ftco-animate text-center mb-5">
 @isset($categoryname)
         <p class="breadcrumbs mb-0"><span class="mr-3"><a href="index.html">Home
-             <i class="ion-ios-arrow-forward"></i></a></span> <span>Browse Job</span></p>
-        <h1 class="mb-3 bread">{{$categoryname->name}},&nbsp; @isset($cityname) {{$cityname->name}} @endisset</h1>
+             <i class="ion-ios-arrow-forward"></i></a></span> <span>@isset($cityname) {{$cityname->name}} @endisset</span></p>
+        <h1 class="mb-3 bread">{{$categoryname->name}},&nbsp; @isset($subname){{$subname->name}} @endisset</h1>
         @endisset
         @foreach($subcats as $sub)
             <form action="{{route('search-byall')}}" method="GET">
@@ -30,7 +30,8 @@
         <div class="row">
         <div class="col-lg-9 pr-lg-4">
         @include('components.backandall')
-        
+       
+       
         <div class="row" id="jobsall">
                 
                 @foreach($jobs as $job)
@@ -91,7 +92,7 @@
         <div class="row">
         <div class="col-lg-9 pr-lg-4">
             @include('components.backandall')
-                
+            
                 <div class="alert alert-danger" role="alert">
                 <h3>Sorry there is no jobs in this kind of filter </h3>
             </div>

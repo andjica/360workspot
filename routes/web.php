@@ -10,13 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/about', 'FrontController@about');
 Route::get('/', 'FrontController@index')->name('index');
 Route::get('/pricing', 'FrontController@pricing')->name('pricing');
 Route::get('/jobs', 'FrontController@jobs')->name('jobs');
 Route::get('/job/{id}', 'FrontController@job')->name('job');
 Route::get('/jobscategory/{id}', 'FrontController@jobcategory');
 Route::get('/jobsajax', 'FrontController@jobsajax');
+Route::get('/jobsby-category/{id}', 'FrontController@jobsbymaincategory')->name('jobsby-category/{id}');
 Route::get('/search', 'FrontController@search')->name('search');
 Route::get('/search-user-filter', 'FrontController@filteruser')->name('search-user-filter');
 Route::get('/search-byall', 'FrontController@searchbyall')->name('search-byall');

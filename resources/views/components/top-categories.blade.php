@@ -18,7 +18,7 @@
         	</div>
         	@endforeach
 			<ul class="list-group mx-auto d-block">
-        	<li class="list-group mt-3">  {{$categoriesall->links()}}</li>
+        	<li class="list-group mt-3">  </li>
         	</ul>
         </div>
     	</div>

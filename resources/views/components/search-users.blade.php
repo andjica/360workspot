@@ -3,7 +3,8 @@
 <div class="container">
 <div class="row d-flex justify-content-center">
 <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
-<h2><i class="fas fa-search fa-2x text-warning"></i></i>&nbsp;Search people</h2>
+<h4 class="text-white">Find or post the perfect job and freelance services, employment and career opportunities today</h4>
+<h2><i class="fas fa-search  text-warning"></i></i>&nbsp;Search Carreer Seakers</h2>
     <form action="{{route('search-user')}}" method="post">
     @csrf
 <div class="row d-flex justify-content-center mt-4 mb-4">

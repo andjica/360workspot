@@ -5,9 +5,8 @@
             <i class="fas fa-city"></i> See all jobs from all country and city
         </a>
         @isset($categoryname)
-                <h4 class="mb-4 lead"> Category > {{$categoryname->name}} >&nbsp; @isset($cityname) {{$cityname->name}} @endisset</h4>
+                <h4 class="mb-4 lead"> Category > {{$categoryname->name}}  @isset($subname) > {{$subname->name}} @endisset>&nbsp;  @isset($cityname) {{$cityname->name}} @endisset </h4>
         @endisset
-       
 
         
 

@@ -8,7 +8,7 @@
 	        <div class="col-md-10 d-flex align-items-center ftco-animate">
 	        	<div class="text text-center pt-5 mt-md-5">
 	        		<p class="mb-4">The online culture of finding and posting in creative industries</p>
-	            <h1 class="mb-5">360WORKSPOT The right place for a new job!</h1>
+	            <h1 class="mb-5">freelance services, employment and career opportunities </h1>
 							<div class="ftco-counter ftco-no-pt ftco-no-pb">
 			        	<div class="row">
 				          <div class="col-md-4 d-flex justify-content-center counter-wrap ftco-animate">
